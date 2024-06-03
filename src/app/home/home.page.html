@@ -1,20 +1,52 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+    <ion-title style="text-align: center;">SkeletonAPP</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <div style="text-align: center; padding: 16px;">
+  <h2>¡Bienvenido!</h2>
+  <p>Usuario: {{ username }}</p>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+<h3>Información Adicional</h3>
+<form [formGroup]="homeForm" (ngSubmit)="mostrar()">
+  <ion-item>
+    <ion-label position="floating">Nombre</ion-label>
+    <ion-input type="text" formControlName="nombre"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Apellido</ion-label>
+    <ion-input type="text" formControlName="apellido"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Nivel de educación</ion-label>
+    <ion-select formControlName="nivelEducacion">
+      <ion-select-option value="primaria">Primaria</ion-select-option>
+      <ion-select-option value="secundaria">Secundaria</ion-select-option>
+      <ion-select-option value="universitaria">Universitaria</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Fecha Nacimiento</ion-label>
+    <mat-form-field appearance="fill">
+      <mat-label>Fecha fechaNacimiento</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="fechaNacimiento">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+  </ion-item>
+
+  <ion-button expand="block" type="button" (click)="limpiar()">Limpiar</ion-button>
+  <ion-button expand="block" type="submit" [disabled]="!homeForm.valid">Mostrar</ion-button>
+</form>
+
+<ion-text>
+  <p>App desarrollada por ChagoLabs</p>
+  </ion-text>
+  
   </div>
 </ion-content>
